@@ -1,31 +1,13 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
-import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
-import Loading from "./Loading";
+import Loading from "./LoadingPage";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import useStyles from "../MaterialUI-Styles/HomePage-style";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    "& > *": {
-      textAlign: "center",
-    },
-  },
-  grid: {
-    marginTop: 100,
-  },
-  buttonHome: {
-    display: "block",
-    marginLeft: "auto",
-    marginRight: "auto",
-    padding: 15,
-  },
-}));
-
-export default function HomePage({ prop, onClick }) {
+function HomePage({ data, loading, dispatch }) {
   const classes = useStyles();
-  const { loading, data } = prop;
-
   return (
     <>
       <h1>Space-X Launches</h1>
@@ -41,8 +23,11 @@ export default function HomePage({ prop, onClick }) {
                   <Button
                     size="medium"
                     component={Link}
-                    to="/launchpage"
-                    onClick={() => onClick(flight_number - 1)}
+                    to={`/launchpage:${flight_number}`}
+                    onClick={() => {
+                      dispatch({ type: "FLIGHT_KEY", flightKey: flight_number - 1 });
+                      localStorage.setItem("flightKey", `${flight_number - 1}`);
+                    }}
                     className={classes.buttonHome}
                     variant="outlined"
                     color="primary"
@@ -59,3 +44,9 @@ export default function HomePage({ prop, onClick }) {
     </>
   );
 }
+
+const mapStateToProps = (store) => {
+  return { loading: store.loading, data: store.data, flightKey: store.flightKey };
+};
+
+export default connect(mapStateToProps)(HomePage);
