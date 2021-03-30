@@ -15,6 +15,15 @@ const useStyles = makeStyles((theme) => ({
     marginRight: "auto",
     padding: 15,
   },
+  buttonFavourite: {
+    display: "block",
+    marginLeft: "auto",
+    marginRight: "auto",
+    marginBottom: 30,
+    width: "20%",
+    textAlign: "center",
+    padding: 10,
+  },
 }));
 
 export default useStyles;

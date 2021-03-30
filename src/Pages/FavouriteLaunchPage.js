@@ -6,9 +6,9 @@ import { connect } from "react-redux";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import useStyles from "../material-ui/LaunchPage-style";
-import FavouriteButton from "./LaunchPageFavButton";
+import FavouriteLaunchPageFavButton from "./FavouriteLaunchPageFavButton";
 
-function LaunchPage({
+function FavouriteLaunchPage({
   mission_name,
   launch_success,
   links,
@@ -20,12 +20,12 @@ function LaunchPage({
   favourited,
 }) {
   const classes = useStyles();
-
   return (
     <>
+      {console.log(favourited)}
       <h1>
         {mission_name}
-        <FavouriteButton
+        <FavouriteLaunchPageFavButton
           favouriteAdd={() => {
             favouriteAdd();
           }}
@@ -48,13 +48,14 @@ function LaunchPage({
       <Button
         size="large"
         component={Link}
-        to="/"
+        to="/favouritespage"
         className={classes.buttonLaunch}
         variant="outlined"
         color="secondary"
       >
         Go Back
       </Button>
+
       <Card className={classes.root}>
         <CardContent>
           <Typography className={classes.title} color="textSecondary" gutterBottom>
@@ -93,4 +94,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(LaunchPage);
+export default connect(null, mapDispatchToProps)(FavouriteLaunchPage);
