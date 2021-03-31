@@ -1,0 +1,4 @@
+export const FAVOURITE_ADD = "FAVOURITE_ADD";
+export const FAVOURITE_REMOVE = "FAVOURITE_REMOVE";
+export const LOADING_FALSE = "LOADING_FALSE";
+export const API_CALL = "API_CALL";

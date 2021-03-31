@@ -7,6 +7,7 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import useStyles from "../material-ui/Launch-style";
 import FavouriteFavButton from "../components/FavouriteFavButton";
+import {FAVOURITE_REMOVE} from '../redux/actions'
 
 function Favourite({
   mission_name,
@@ -82,7 +83,7 @@ function Favourite({
 const mapDispatchToProps = (dispatch, ownProps) => {
   const { flight_number } = ownProps;
   return {
-    favouriteRemove: () => dispatch({ type: "FAVOURITE_REMOVE", payload: { id: flight_number } }),
+    favouriteRemove: () => dispatch({ type: FAVOURITE_REMOVE, payload: { id: flight_number } }),
   };
 };
 

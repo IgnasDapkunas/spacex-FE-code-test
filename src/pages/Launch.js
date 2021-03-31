@@ -7,6 +7,7 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import useStyles from "../material-ui/Launch-style";
 import LaunchFavButton from "../components/LaunchFavButton";
+import {FAVOURITE_ADD, FAVOURITE_REMOVE} from '../redux/actions'
 
 function LaunchPage({
   mission_name,
@@ -84,9 +85,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   const { flight_number } = ownProps;
   return {
     favouriteAdd: () =>
-      dispatch({ type: "FAVOURITE_ADD", payload: { id: flight_number, favourited: true } }),
+      dispatch({ type: FAVOURITE_ADD, payload: { id: flight_number, favourited: true } }),
     favouriteRemove: () =>
-      dispatch({ type: "FAVOURITE_REMOVE", payload: { id: flight_number, favourited: false } }),
+      dispatch({ type: FAVOURITE_REMOVE, payload: { id: flight_number, favourited: false } }),
   };
 };
 
