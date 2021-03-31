@@ -5,30 +5,25 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
-import useStyles from "../material-ui/LaunchPage-style";
-import FavouriteButton from "./LaunchPageFavButton";
+import useStyles from "../material-ui/Launch-style";
+import FavouriteFavButton from "../components/FavouriteFavButton";
 
-function LaunchPage({
+function Favourite({
   mission_name,
   launch_success,
   links,
   launch_date_local,
   launch_site,
   details,
-  favouriteAdd,
   favouriteRemove,
   favourited,
 }) {
   const classes = useStyles();
-
   return (
     <>
       <h1>
         {mission_name}
-        <FavouriteButton
-          favouriteAdd={() => {
-            favouriteAdd();
-          }}
+        <FavouriteFavButton
           favouriteRemove={() => favouriteRemove()}
           favourited={favourited}
         />
@@ -48,13 +43,14 @@ function LaunchPage({
       <Button
         size="large"
         component={Link}
-        to="/"
+        to="/favouritespage"
         className={classes.buttonLaunch}
         variant="outlined"
         color="secondary"
       >
         Go Back
       </Button>
+
       <Card className={classes.root}>
         <CardContent>
           <Typography className={classes.title} color="textSecondary" gutterBottom>
@@ -86,11 +82,8 @@ function LaunchPage({
 const mapDispatchToProps = (dispatch, ownProps) => {
   const { flight_number } = ownProps;
   return {
-    favouriteAdd: () =>
-      dispatch({ type: "FAVOURITE_ADD", payload: { id: flight_number, favourited: true } }),
-    favouriteRemove: () =>
-      dispatch({ type: "FAVOURITE_REMOVE", payload: { id: flight_number, favourited: false } }),
+    favouriteRemove: () => dispatch({ type: "FAVOURITE_REMOVE", payload: { id: flight_number } }),
   };
 };
 
-export default connect(null, mapDispatchToProps)(LaunchPage);
+export default connect(null, mapDispatchToProps)(Favourite);

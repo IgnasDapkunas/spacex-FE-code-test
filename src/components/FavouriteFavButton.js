@@ -1,10 +1,10 @@
 import React from "react";
 import IconButton from "@material-ui/core/IconButton";
-import useStyles from "../material-ui/FavouriteButton-style";
+import useStyles from "../material-ui/FavButton-style";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import Tooltip from "@material-ui/core/Tooltip";
 
-export default function FavouriteButton({ favouriteRemove }) {
+export default function FavouriteFavButton({ favouriteRemove }) {
   const classes = useStyles();
   return (
     <div className={classes.root}>

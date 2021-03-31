@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import launchesData from "./api/API";
 import { connect } from "react-redux";
+import launchesData from "./api/launchesData";
 import Navigation from "./Navigation";
 
 function App({ apiUrl, dispatch }) {

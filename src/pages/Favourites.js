@@ -1,42 +1,41 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
-import Loading from "./LoadingPage";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import useStyles from "../material-ui/HomePage-style";
+import useStyles from "../material-ui/Launches-style";
 
-function HomePage({ data, loading, dispatch }) {
+function Favourites({ favourites }) {
   const classes = useStyles();
   return (
     <>
-      <h1>Space-X Launches 🚀</h1>
+      <h1>Your Favourites 💖</h1>
       <Button
         size="large"
         component={Link}
-        to="/favouritespage"
+        to="/"
         className={classes.buttonFavourite}
-        variant="outlined"
-        color="secondary"
+        variant="contained"
+        color="primary"
       >
-        my favourites
+        Back to launches
       </Button>
-      {loading ? (
-        <Loading />
+      {favourites.length === 0 ? (
+        <h3>Uh oh... Seems like you haven't added anything to your favourites yet!</h3>
       ) : (
         <Grid className={classes.grid} container spacing={3}>
-          {data.map((launch) => {
-            const { mission_name, launch_year, flight_number } = launch;
+          {favourites.map((launch) => {
+            const { mission_name, launch_year, flight_number, favourited } = launch;
             return (
-              <Grid item xs={6} sm={4} md={3} key={flight_number}>
+              <Grid item xs={6} sm={4} md={3} key={`favouritespage_${flight_number}`}>
                 <div className={classes.root}>
                   <Button
                     size="medium"
                     component={Link}
-                    to={`/launchpage/${flight_number}`}
+                    to={`/favouritespage/launchpage/${flight_number}`}
                     className={classes.buttonHome}
                     variant="outlined"
-                    color="primary"
+                    color={favourited ? `secondary` : `primary`}
                   >
                     <h2>{mission_name}</h2>
                     <div className={"year"}>{launch_year}</div>
@@ -52,7 +51,7 @@ function HomePage({ data, loading, dispatch }) {
 }
 
 const mapStateToProps = (store) => {
-  return { loading: store.loading, data: store.data };
+  return { loading: store.loading, favourites: store.favourites };
 };
 
-export default connect(mapStateToProps)(HomePage);
+export default connect(mapStateToProps)(Favourites);

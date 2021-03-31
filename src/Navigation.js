@@ -1,21 +1,21 @@
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
-import LaunchPage from "./pages/LaunchPage";
-import HomePage from "./pages/HomePage";
-import FavouritesPage from "./pages/FavouritesPage";
-import FavouriteLaunchPage from "./pages/FavouriteLaunchPage";
 import { connect } from "react-redux";
+import LaunchPage from "./pages/Launch";
+import LaunchesPage from "./pages/Launches";
+import FavouritesPage from "./pages/Favourites";
+import FavouriteLaunchPage from "./pages/Favourite";
 
 function Navigation({ data, favourites }) {
   return (
     <Router>
       <Switch>
         <Route exact path="/">
-          <HomePage />
+          <LaunchesPage />
         </Route>
         {data.map((launch) => {
           return (
             <Route exact path={`/launchpage/${launch.flight_number}`}>
-              <LaunchPage key={launch.flight_number} {...launch} />
+              <LaunchPage key={`launchpage_${launch.flight_number}`} {...launch} />
             </Route>
           );
         })}
@@ -25,7 +25,10 @@ function Navigation({ data, favourites }) {
         {favourites.map((launch) => {
           return (
             <Route exact path={`/favouritespage/launchpage/${launch.flight_number}`}>
-              <FavouriteLaunchPage key={launch.flight_number} {...launch} />
+              <FavouriteLaunchPage
+                key={`favouritespage_launchpage_${launch.flight_number}`}
+                {...launch}
+              />
             </Route>
           );
         })}

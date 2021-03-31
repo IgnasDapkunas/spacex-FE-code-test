@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "auto",
     marginRight: "auto",
     marginBottom: 30,
-    width: "20%",
+    width: "25%",
     textAlign: "center",
     padding: 10,
   },
