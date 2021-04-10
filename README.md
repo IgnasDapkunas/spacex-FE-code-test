@@ -3,6 +3,16 @@ This is a website that lists all Space-X launches on the main page and displays 
 
 Data is pulled via an API call from https://github.com/r-spacex/SpaceX-API
 
+# Technologies used
+
+* Javascript
+* CSS
+* [React.js](https://reactjs.org/)
+* [Redux](https://react-redux.js.org/)
+* [Router](https://reactrouter.com/)
+* [Material-UI](https://material-ui.com/)
+
+
 # How to setup on localhost
 
 1. Clone or download main repository
@@ -12,12 +22,3 @@ Data is pulled via an API call from https://github.com/r-spacex/SpaceX-API
 3. Open console, run command "npm install"
 
 4. After dependencies are installed, run command "npm start"
-
-# Technologies used
-
-* Javascript
-* CSS
-* [React.js](https://reactjs.org/)
-* [Redux](https://react-redux.js.org/)
-* [Router](https://reactrouter.com/)
-* [Material-UI](https://material-ui.com/)
