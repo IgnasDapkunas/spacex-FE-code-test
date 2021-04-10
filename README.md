@@ -17,7 +17,7 @@ Data is pulled via an API call from https://github.com/r-spacex/SpaceX-API
 
 1. Clone or download main repository
 
-2. (If not installed) Download npm with Node.js here: https://www.npmjs.com/get-npm
+2. (If not installed) Download npm with Node.js [here](https://www.npmjs.com/get-npm)
 
 3. Open console, run command "npm install"
 
