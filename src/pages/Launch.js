@@ -1,47 +1,38 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
+import useStyles from "../material-ui/Launch-style";
+import LaunchFavButton from "../components/LaunchFavButton";
+import {FAVOURITE_ADD, FAVOURITE_REMOVE} from '../redux/actions'
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    "& > *": {
-      textAlign: "center",
-    },
-  },
-  pos: {
-    marginBottom: 50,
-  },
-  buttonLaunch: {
-    display: "block",
-    marginLeft: "auto",
-    marginRight: "auto",
-    marginBottom: 30,
-    width: "20%",
-    textAlign: "center",
-    padding: 10,
-  },
-  success: {
-    display: "block",
-    marginLeft: "auto",
-    marginRight: "auto",
-    textAlign: "center",
-    marginTop: -40,
-    marginBottom: 30,
-  },
-}));
-
-export default function LaunchPage({ prop, flightKey }) {
+function LaunchPage({
+  mission_name,
+  launch_success,
+  links,
+  launch_date_local,
+  launch_site,
+  details,
+  favouriteAdd,
+  favouriteRemove,
+  favourited,
+}) {
   const classes = useStyles();
-  const { data } = prop;
   return (
     <>
-      <h1>{data[flightKey].mission_name}</h1>
+      <h1>
+        {mission_name}
+        <LaunchFavButton
+          favouriteAdd={() => favouriteAdd()}
+          favouriteRemove={() => favouriteRemove()}
+          favourited={favourited}
+        />
+      </h1>
       <Typography variant="h5" component="h2" className={classes.success}>
-        {data[flightKey].launch_success === false ? (
+        {launch_success === false ? (
           <div className="unsuccessful">Launch was unsuccessful.</div>
         ) : (
           <div className="successful">Launch was successful.</div>
@@ -49,7 +40,7 @@ export default function LaunchPage({ prop, flightKey }) {
       </Typography>
       <img
         className="img-class"
-        src={`${data[flightKey].links.mission_patch_small}`}
+        src={`${links.mission_patch_small}`}
         alt="space-x mission patches"
       ></img>
       <Button
@@ -66,22 +57,21 @@ export default function LaunchPage({ prop, flightKey }) {
         <CardContent>
           <Typography className={classes.title} color="textSecondary" gutterBottom>
             <div>
-              {data[flightKey].launch_date_local} launched in{" "}
-              {data[flightKey].launch_site.site_name}
+              {launch_date_local} launched in {launch_site.site_name}
             </div>
           </Typography>
           <Typography className={classes.pos} color="textSecondary">
             <div>
               <b>Mission name: </b>
-              {data[flightKey].mission_name}
+              {mission_name}
             </div>
           </Typography>
           <Typography variant="h5" component="h2">
-            {data[flightKey].details === null ? (
+            {details === null ? (
               <b>No details provided.</b>
             ) : (
               <div>
-                <b>Launch details:</b> {data[flightKey].details}
+                <b>Launch details:</b> {details}
               </div>
             )}
           </Typography>
@@ -90,3 +80,15 @@ export default function LaunchPage({ prop, flightKey }) {
     </>
   );
 }
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  const { flight_number } = ownProps;
+  return {
+    favouriteAdd: () =>
+      dispatch({ type: FAVOURITE_ADD, payload: { id: flight_number, favourited: true } }),
+    favouriteRemove: () =>
+      dispatch({ type: FAVOURITE_REMOVE, payload: { id: flight_number, favourited: false } }),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(LaunchPage);
