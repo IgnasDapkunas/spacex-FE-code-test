@@ -1,5 +1,5 @@
 # Description
-This is a website that lists all Space-X launches on the main page and displays descriptions when clicked on any individual launch. There is also functionality of adding and removing any of the launches to the favourites page. Supports mobile devices.
+This is a website that lists all Space-X launches on the main page and displays descriptions when clicked on any individual launch. There is also functionality of adding and removing any of the launches to favourites by clicking the heart icon, which are then displayed in the favourites page. Supports mobile devices.
 
 Data is pulled via an API call from https://github.com/r-spacex/SpaceX-API
 
