@@ -12,3 +12,12 @@ Data is pulled via an API call from https://github.com/r-spacex/SpaceX-API
 3. Open console, run command "npm install"
 
 4. After dependencies are installed, run command "npm start"
+
+# Technologies used
+
+* Javascript
+* CSS
+* [React.js](https://reactjs.org/)
+* [Redux](https://react-redux.js.org/)
+* [Router](https://reactrouter.com/)
+* [Material-UI](https://material-ui.com/)
