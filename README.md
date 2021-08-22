@@ -3,6 +3,8 @@ This is a website that lists all Space-X launches on the main page and displays 
 
 Data is pulled via an API call from https://github.com/r-spacex/SpaceX-API
 
+View website via this link: https://ignas-spacex.netlify.app/
+
 # Technologies used
 
 * Javascript
