@@ -7,8 +7,9 @@ View website via this link: https://ignas-spacex.netlify.app/
 
 # Technologies used
 
-* Javascript
+* HTML
 * CSS
+* Javascript
 * [React.js](https://reactjs.org/)
 * [Redux](https://react-redux.js.org/)
 * [Router](https://reactrouter.com/)
